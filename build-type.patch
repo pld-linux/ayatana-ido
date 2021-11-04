@@ -1,0 +1,23 @@
+--- ayatana-ido-0.9.0/CMakeLists.txt.orig	2021-11-02 16:52:12.000000000 +0100
++++ ayatana-ido-0.9.0/CMakeLists.txt	2021-11-04 14:12:52.765226502 +0100
+@@ -13,20 +13,6 @@
+ option(ENABLE_COVERAGE "Enable coverage reports (includes enabling all tests and checks)" OFF)
+ option(ENABLE_WERROR "Treat all build warnings as errors" OFF)
+ 
+-if(ENABLE_COVERAGE)
+-    set(ENABLE_TESTS ON)
+-    set(CMAKE_BUILD_TYPE "Coverage")
+-else()
+-    set(CMAKE_BUILD_TYPE "Release")
+-endif()
+-
+-if(ENABLE_COVERAGE)
+-    set(ENABLE_TESTS ON)
+-    set(CMAKE_BUILD_TYPE "Coverage")
+-else()
+-    set(CMAKE_BUILD_TYPE "Release")
+-endif()
+-
+ # Check for prerequisites
+ 
+ set(DEPS glib-2.0>=2.58 gtk+-3.0>=3.24)

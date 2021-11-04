@@ -1,27 +1,27 @@
 Summary:	Shared functions for Ayatana Indicator Display Objects
 Summary(pl.UTF-8):	Funkcje współdzielone dla obiektów wyświetlania wskaźników Ayatana
 Name:		ayatana-ido
-Version:	0.8.2
+Version:	0.9.0
 Release:	1
 License:	LGPL v2.1 or LGPL v3
 Group:		Libraries
 #Source0Download: https://github.com/AyatanaIndicators/ayatana-ido/releases
 Source0:	https://github.com/AyatanaIndicators/ayatana-ido/archive/%{version}/%{name}-%{version}.tar.gz
-# Source0-md5:	f72ce8fb7bdedf80c20d6083fa371e19
+# Source0-md5:	63e62f18952f874e9173285c621f62f4
+Patch0:		build-type.patch
+Patch1:		link-math.patch
 URL:		https://github.com/AyatanaIndicators/ayatana-ido
-BuildRequires:	autoconf >= 2.64
-BuildRequires:	automake >= 1:1.11
-BuildRequires:	glib2-devel >= 1:2.37.0
+BuildRequires:	cmake >= 3.13
+BuildRequires:	glib2-devel >= 1:2.58
 BuildRequires:	gobject-introspection-devel >= 0.6.7
-BuildRequires:	gtk+3-devel >= 3.8.2
+BuildRequires:	gtk+3-devel >= 3.24
 BuildRequires:	gtk-doc >= 1.8
-BuildRequires:	libtool >= 2:2.2
 BuildRequires:	pkgconfig
+BuildRequires:	rpmbuild(macros) >= 1.605
 BuildRequires:	sed >= 4.0
 BuildRequires:	vala
-BuildRequires:	which
-Requires:	glib2 >= 1:2.37.0
-Requires:	gtk+3 >= 3.8.2
+Requires:	glib2 >= 1:2.58
+Requires:	gtk+3 >= 3.24
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -35,8 +35,8 @@ Summary:	Development files for ayatana-ido library
 Summary(pl.UTF-8):	Pliki programistyczne biblioteki ayatana-ido
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
-Requires:	glib2-devel >= 1:2.37.0
-Requires:	gtk+3-devel >= 3.8.2
+Requires:	glib2-devel >= 1:2.58
+Requires:	gtk+3-devel >= 3.24
 
 %description devel
 This package contains the header files for developing applications
@@ -62,24 +62,18 @@ API języka Vala do biblioteki ayatana-ido.
 
 %prep
 %setup -q
+%patch0 -p1
+%patch1 -p1
 
 %build
-%{__libtoolize}
-%{__aclocal} -I m4
-%{__autoconf}
-%{__autoheader}
-%{__automake}
-%configure \
-	--disable-silent-rules
-%{__make}
+%cmake -B build
+%{__make} -C build
 
 %install
 rm -rf $RPM_BUILD_ROOT
 
-%{__make} install \
+%{__make} -C build install \
 	DESTDIR=$RPM_BUILD_ROOT
-
-%{__rm} $RPM_BUILD_ROOT%{_libdir}/lib*.la
 
 %clean
 rm -rf $RPM_BUILD_ROOT
