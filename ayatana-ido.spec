@@ -17,6 +17,7 @@ BuildRequires:	gobject-introspection-devel >= 0.6.7
 BuildRequires:	gtk+3-devel >= 3.24
 BuildRequires:	gtk-doc >= 1.8
 BuildRequires:	pkgconfig
+BuildRequires:	rpm-build >= 4.6
 BuildRequires:	rpmbuild(macros) >= 1.605
 BuildRequires:	sed >= 4.0
 BuildRequires:	vala
