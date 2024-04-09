@@ -1,13 +1,13 @@
 Summary:	Shared functions for Ayatana Indicator Display Objects
 Summary(pl.UTF-8):	Funkcje współdzielone dla obiektów wyświetlania wskaźników Ayatana
 Name:		ayatana-ido
-Version:	0.10.1
+Version:	0.10.2
 Release:	1
 License:	LGPL v2.1 or LGPL v3
 Group:		Libraries
 #Source0Download: https://github.com/AyatanaIndicators/ayatana-ido/releases
 Source0:	https://github.com/AyatanaIndicators/ayatana-ido/archive/%{version}/%{name}-%{version}.tar.gz
-# Source0-md5:	9d87a3af97cc3f9e662293e6354e3072
+# Source0-md5:	65848e42d6f949e74fe1a50ad28d309e
 Patch0:		build-type.patch
 URL:		https://github.com/AyatanaIndicators/ayatana-ido
 BuildRequires:	cmake >= 3.13
